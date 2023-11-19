@@ -34,4 +34,23 @@ DBPassword=пароль от БД
 7.В браузере http://localhost/zabbix
 8.Далее настройки
 
+Решение 2
 
+На обеих виртуальных машинах установил Zabbix Agent:
+
+sudo apt update
+sudo apt install zabbix-agent
+
+Добавил Zabbix Server в список разрешенных серверов в Zabbix Agent. Отредактировал файл конфигурации /etc/zabbix/zabbix_agentd.conf:
+
+sudo nano /etc/zabbix/zabbix_agentd.conf
+
+изменил следующую строку, добавил IP-адрес Zabbix Server:
+
+Server=IP моего Zabbix Server 
+
+Перезапустил службу Zabbix Agent:
+
+    sudo systemctl restart zabbix-agent
+
+    На сервере Zabbix добавил хосты в разделе Configuration > Hosts.
